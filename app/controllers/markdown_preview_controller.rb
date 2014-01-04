@@ -1,8 +1,8 @@
+require 'kramdown'
+
 class MarkdownPreviewController < ApplicationController
-
   def convert
-    markdown = RDiscount.new( MarkdownPreview.preprocess_markdown( params[:markdown_text] ) )
-
+    markdown = Kramdown::Document.new( MarkdownPreview.preprocess_markdown( params[:markdown_text] ))
     html = markdown.to_html
 
     respond_to do |format|
